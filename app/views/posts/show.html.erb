@@ -1,2 +1,4 @@
 <h1><%= @post.title %></h1>
 <p><%= @post.body %></p>
+<%= @post.created_at.strftime('%l %M %S') %>
+<%= link_to "Edit", edit_post_path(@post), class: 'btn btn-success' %>

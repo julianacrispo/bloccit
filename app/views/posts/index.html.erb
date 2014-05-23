@@ -4,6 +4,7 @@
     <div class="media-body">
       <h4 class="media-heading">
         <%= link_to post.title, post %>
+        <%= post.created_at.strftime('%y') %>
       </h4>
     </div>
   </div>
