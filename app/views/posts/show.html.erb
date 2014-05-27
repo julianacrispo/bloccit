@@ -1,4 +1,8 @@
 <h1><%= @post.title %></h1>
+<% if policy(@post).edit? %>
+<%# if PostPolicy.new(current_user, @post).edit? %>
+  <%= link_to "Edit", edit_post_path(@post), class: 'btn btn-success' %>
+<% end %>
 <p><%= @post.body %></p>
 <%= @post.created_at.strftime('%l %M %S') %>
 <%= link_to "Edit", edit_post_path(@post), class: 'btn btn-success' %>
