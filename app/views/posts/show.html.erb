@@ -1,8 +1,12 @@
 <h1><%= @post.title %></h1>
-<% if policy(@post).edit? %>
-<%# if PostPolicy.new(current_user, @post).edit? %>
-  <%= link_to "Edit", edit_post_path(@post), class: 'btn btn-success' %>
-<% end %>
-<p><%= @post.body %></p>
-<%= @post.created_at.strftime('%l %M %S') %>
-<%= link_to "Edit", edit_post_path(@post), class: 'btn btn-success' %>
+
+<div class="row">
+  <div class="col-md-8">
+    <p><%= @post.body %></p>
+  </div>
+  <div class="col-md-4">
+    <% if policy(@post).edit? %> <!-- uses post policy to authorize those able to edit -->
+      <%= link_to "Edit", edit_topic_post_path(@topic,@post), class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
