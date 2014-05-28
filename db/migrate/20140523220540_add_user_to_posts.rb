@@ -5,4 +5,3 @@ class AddUserToPosts < ActiveRecord::Migration
   end
 end
 
-g

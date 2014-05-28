@@ -1,29 +1,32 @@
 class TopicsController < ApplicationController
   def index
     @topics = Topic.all
-    authorize @topics
+    #authorize @topics
   end
 
   def new
     @topic = Topic.new(topic_params)
-    authorize @topic
+    #authorize @topic
     if @topic.update_attributes(topic_params)
+    end
   end
 
   def show
-     @topic = Topic.find(params[:id])
+    @topic = Topic.find(params[:id])
+    logger.info "\n\n@topic currently contains:  #{@topic}"
+    logger.info @topic.to_yaml
      @posts = @topic.posts
      authorize @topic
   end
 
   def edit
     @topic = Topic.find(params[:id])
-    authorize @topic
+    #authorize @topic
   end
 
  def create
     @topic = Topic.new(topic_params)
-    authorize @topic 
+    #authorize @topic 
     if @topic.update_attributes(topic_params)
       redirect_to @topic, notice: "Topic was saved successfully."
     else
@@ -34,7 +37,7 @@ class TopicsController < ApplicationController
 
    def update
    @topic = Topic.new(topic_params)
-    authorize @topic
+    #authorize @topic
     if @topic.update_attributes(topic_params)
       redirect_to @topic
     else
@@ -48,5 +51,4 @@ class TopicsController < ApplicationController
   def topic_params
     params.require(:topic).permit(:name, :description, :public)
   end
-end
 end
