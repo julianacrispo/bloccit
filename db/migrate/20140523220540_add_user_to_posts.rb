@@ -5,12 +5,4 @@ class AddUserToPosts < ActiveRecord::Migration
   end
 end
 
-
-# id  title     body
-# 1   asdfasf   qwerqwer
-# 2   
-
-
-# id name    email
-# 1  adam     adam@louis.add_column
-# 2  juliana juliana@gmail.com
+g
