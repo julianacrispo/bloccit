@@ -11,6 +11,14 @@ class AvatarUploader < CarrierWave::Uploader::Base
   storage :fog
 
   # Override the directory where uploaded files will be stored.
+  module Bloccit::AWS
+  CONFIG_PATH = File.join(Rails.root, 'config/aws.yml')
+
+  def self.config
+    @_config ||= YAML.load_file(CONFIG_PATH)[Rails.env]
+  end
+end
+
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"

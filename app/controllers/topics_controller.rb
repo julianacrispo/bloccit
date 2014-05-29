@@ -1,12 +1,12 @@
 class TopicsController < ApplicationController
   def index
-    @topics = Topic.all
-    #authorize @topics
+    @topics = Topic.paginate(page: params[:page], per_page: 10)
+    authorize @topics
   end
 
   def new
     @topic = Topic.new(topic_params)
-    #authorize @topic
+    authorize @topic
     if @topic.update_attributes(topic_params)
     end
   end
@@ -15,7 +15,7 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
     logger.info "\n\n@topic currently contains:  #{@topic}"
     logger.info @topic.to_yaml
-     @posts = @topic.posts
+    @posts = @topic.posts.paginate(page: params[:page], per_page: 10)
      authorize @topic
   end
 
@@ -26,7 +26,7 @@ class TopicsController < ApplicationController
 
  def create
     @topic = Topic.new(topic_params)
-    #authorize @topic 
+    authorize @topic 
     if @topic.update_attributes(topic_params)
       redirect_to @topic, notice: "Topic was saved successfully."
     else
@@ -37,7 +37,7 @@ class TopicsController < ApplicationController
 
    def update
    @topic = Topic.new(topic_params)
-    #authorize @topic
+    authorize @topic
     if @topic.update_attributes(topic_params)
       redirect_to @topic
     else

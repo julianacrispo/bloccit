@@ -3,9 +3,12 @@ Bloccit::Application.routes.draw do
   devise_for :users
   resources :users, only: [:update]
 
-    resources :topics do
+  resources :topics do
     resources :posts, except: [:index]
   end
+
+  # get 'topics' => 'topics#index'
+  # get 'topics/:id' => 'topics#show'
 
   get 'about' => 'welcome#about'
 
