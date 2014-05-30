@@ -8,7 +8,14 @@
       <%= @post.user.name %>
     </small>
     <p><%= markdown @post.body %></p>
+
+    <% @post.comments.each do |comment| %>
+      <%= render partial: 'comments/comment', locals: { comment: comment } %>
+    <% end %>
+
+    <%= render partial: 'comments/form', locals: { topic: @topic, post: @post, comment: @comment } %>
   </div>
+
   <div class="col-md-4">
     <% if policy(@post).edit? %> <!-- uses post policy to authorize those able to edit -->
       <%= link_to "Edit", edit_topic_post_path(@topic,@post), class: 'btn btn-success' %>

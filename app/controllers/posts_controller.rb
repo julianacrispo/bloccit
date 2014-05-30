@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   def show
     @topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:id])
+    @comment = Comment.new
   end
 
   def new
@@ -26,6 +27,7 @@ class PostsController < ApplicationController
     @topic = Topic.find(params[:topic_id])
     @post = current_user.posts.build(post_params)
     @post.topic = @topic 
+    # @comment = current_user.comment.build(params.require(:comment).permit(:body, :post))
 
     authorize @post
     if @post.save
