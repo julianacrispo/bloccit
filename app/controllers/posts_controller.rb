@@ -38,8 +38,6 @@ class PostsController < ApplicationController
     end
   end
 
- 
-
   def update
     @topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:id])
@@ -70,6 +68,7 @@ class PostsController < ApplicationController
   
 
   private
+  
   def post_params
     params.require(:post).permit(:title, :body, :avatar)
   end

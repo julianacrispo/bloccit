@@ -15,7 +15,7 @@ users = User.all
 #create Topics
 50.times do 
   Topic.create(
-     name:         Faker::Lorem.sentence,
+    name:         Faker::Lorem.sentence,
     description:  Faker::Lorem.paragraph
   )
 end
@@ -33,13 +33,18 @@ topics = Topic.all
 
 # Create Posts
 100.times do
-  Post.create(
+ post = Post.create(
     user:   users.sample,
     topic: topics.sample,
     title:  Faker::Lorem.sentence,
     body:   Faker::Lorem.paragraph
   )
+
+#set the created_at to the time within the past year
+post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
+post.update_rank
 end
+
 posts = Post.all
 
 # Create Comments
