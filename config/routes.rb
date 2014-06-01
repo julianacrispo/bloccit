@@ -5,6 +5,7 @@ Bloccit::Application.routes.draw do
 
   resources :topics do
     resources :posts, except: [:index] do
+      resources :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
       get '/up-vote' => 'votes#up_vote', as: :up_vote
       get '/down-vote' => 'votes#down_vote', as: :down_vote

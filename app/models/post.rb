@@ -1,11 +1,12 @@
 class Post < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   belongs_to :user
   belongs_to :topic
 
-after_create :create_vote
-  mount_uploader :image, ImageUploader
+# after_create :create_vote
+#   mount_uploader :image, ImageUploader
  
 
    default_scope { order('rank DESC') }
@@ -35,14 +36,15 @@ after_create :create_vote
 
      self.update_attribute(:rank, new_rank)
   end
-
-  private
-
-  # Who ever created a post, should automatically be set to "voting" it up.
-  def create_vote
-    user.votes.create(value: 1, post: self)
-  end
 end
+
+#   private > getting error 
+
+#   # Who ever created a post, should automatically be set to "voting" it up.
+#   def create_vote
+#     user.votes.create(value: 1, post: self)
+#   end
+# end
 
 
 
