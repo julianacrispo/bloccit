@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :avatar) #user accepts name and avatar parameters when updated
+    params.require(:user).permit(:name, :avatar, :email_favorites) #user accepts name and avatar parameters when updated
   end
+end
 end
