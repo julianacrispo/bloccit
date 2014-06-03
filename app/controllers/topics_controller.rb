@@ -5,10 +5,8 @@ class TopicsController < ApplicationController
   end
 
   def new
-    @topic = Topic.new(topic_params)
+    @topic = Topic.new
     authorize @topic
-    if @topic.update_attributes(topic_params)
-    end
   end
 
   def show

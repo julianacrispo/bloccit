@@ -72,7 +72,7 @@ class Topics::PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:title, :body, :avatar)
+    params.require(:post).permit(:title, :body, :image)
   end
 end
 
