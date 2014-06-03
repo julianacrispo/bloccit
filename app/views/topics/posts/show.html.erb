@@ -16,11 +16,10 @@
     <div class="row">
       <p><%= markdown @post.body %></p>
       <%= image_tag(@post.image.url) %>
-
         <h2 class='js-comments-count'><%= @comments.count %> Comments</h2>
-
-    <%= render partial: 'comments/comment', collection: @comments %>
-
+          <div class='js-comments'>
+            <%= render partial: 'comments/comment', collection: @comments %>
+          </div>
       <% @post.comments.each do |comment| %>
         <%= render partial: 'comments/comment', locals: { comment: comment } %>
       <% end %>

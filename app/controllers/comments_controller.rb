@@ -9,6 +9,13 @@ class CommentsController < ApplicationController
     @comment = Comment.new(params.require(:comment).permit(:body))
     @comment.user = current_user
     @comment.post = @post
+    
+    @comment = current_user.comments.build( comment_params )
+    @comment.post = @post
+    @new_comment = Comment.new
+
+    authorize @comment
+
     if @comment.save
       redirect_to topic_post_path(@topic, @post), notice: "Comment was saved successfully."
     else
@@ -33,3 +40,12 @@ class CommentsController < ApplicationController
       f.html { redirect_to [@topic, @post] }
   end
 end
+
+private
+
+  def comment_params
+    params.require(:comment).permit(
+      :body,
+      :post_id
+    )
+  end
