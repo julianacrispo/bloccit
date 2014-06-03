@@ -10,4 +10,5 @@
     </small>
     <p><%= comment.body %></p>
   </div>
+  <%= link_to "Delete", comment_url_helper(comment), method: :delete, remote: true %>
 <% end %>
