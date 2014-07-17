@@ -49,3 +49,4 @@ private
       :post_id
     )
   end
+end
