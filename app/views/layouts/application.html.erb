@@ -78,7 +78,7 @@ _bm_request.send(JSON.stringify(_bm_event));
 </script>
 
 <script>
-  blocmetrics_track("loaded page", <%= current_user ? current_user.name : 'guest' %>, window.location.pathname);
+  blocmetrics_track("loaded page", "guest", window.location.pathname);
 </script>
 
 
